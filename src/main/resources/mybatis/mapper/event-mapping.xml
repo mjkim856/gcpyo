@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test1.controller.EventDao">
+    <insert id="insertEvent" parameterType="eventDto">
+        insert into user (name, gender, age, tel)
+        values(#{name}, #{gender}, #{age}, #{tel})
+    </insert>
+
+    <update id="updateEvent" parameterType="eventDto">
+        update user
+        set name=#{name}, gender=#{gender}, age=#{age}
+        where tel=#{tel}
+    </update>
+
+    <select id="getEvent" resultType="eventDto" parameterType="String">
+        select * from user where tel = #{tel}
+    </select>
+
+    <delete id="deleteEvent" parameterType="int">
+        delete from user
+        where seq = #{seq}
+    </delete>
+</mapper>
