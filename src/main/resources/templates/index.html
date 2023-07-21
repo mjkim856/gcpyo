@@ -1,0 +1,63 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>이벤트 신청 페이지</title>
+</head>
+<body>
+<h1>이벤트 신청 페이지</h1>
+<form id="eventForm">
+  <label for="name">이름:</label>
+  <input type="text" id="name" required><br>
+
+  <label for="age">나이:</label>
+  <input type="number" id="age" required><br>
+
+  <label>성별:</label>
+  <input type="radio" id="male" name="gender" value="M" required>
+  <label for="male">남자</label>
+  <input type="radio" id="female" name="gender" value="W" required>
+  <label for="female">여자</label><br>
+
+  <label for="tel">전화번호:</label>
+  <input type="tel" id="tel" required><br>
+
+  <input type="submit" value="제출">
+</form>
+
+<script>
+  document.getElementById('eventForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById('name').value;
+    let age = document.getElementById('age').value;
+    let gender = document.querySelector('input[name="gender"]:checked').value;
+    let tel = document.getElementById('tel').value;
+
+    let formData = {
+      name: name,
+      age: age,
+      gender: gender,
+      tel: tel
+    };
+
+    // fetch('http://localhost:8080/submit-form', {
+    fetch('http://34.36.148.223:8080/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+            .then(response => response.text())
+            .then(data => {
+              alert(data);
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!-- event-list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>이벤트 조회 페이지</title>
+</head>
+<body>
+<h1>이벤트 조회 페이지</h1>
+<table id="eventTable">
+  <tr>
+    <th>이름</th>
+    <th>나이</th>
+    <th>성별</th>
+    <th>전화번호</th>
+    <!-- 서버에서 조회한 데이터를 여기에 삽입할 예정 -->
+  </tr>
+</table>
+
+<script>
+  // 백엔드(Spring Boot)로 데이터 요청
+  fetch('/events')
+          .then(response => response.json())
+          .then(data => {
+            displayEventData(data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+
+  // 조회한 데이터를 표에 삽입하는 함수
+  function displayEventData(data) {
+    const table = document.querySelector('table');
+
+    data.forEach(event => {
+      const row = table.insertRow();
+
+      const nameCell = row.insertCell();
+      nameCell.textContent = event.name;
+
+      const ageCell = row.insertCell();
+      ageCell.textContent = event.age;
+
+      const genderCell = row.insertCell();
+      genderCell.textContent = event.gender;
+
+      const telCell = row.insertCell();
+      telCell.textContent = event.tel;
+    });
+  }
+</script>
+</body>
+</html>

@@ -70,19 +70,11 @@ public class MainController {
     // index가 없는 이유 : springboot의 static은 js, html, css 등 정적 파일을 설정하는 곳이라
     // 그냥 index.html만 하면 자동으로 메인 설정되어 뜬다.
 
+//    @GetMapping("/")
+//    public String main() {
+//        return "index";
+//    }
 
-
-
-
-
-
-
-
-
-
-
-
-    
     @PostMapping("/submit-form")
     @ResponseBody
     public String submitForm(@RequestBody EventDto formData) {
@@ -97,19 +89,6 @@ public class MainController {
 
         return "전송되었습니다!";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
