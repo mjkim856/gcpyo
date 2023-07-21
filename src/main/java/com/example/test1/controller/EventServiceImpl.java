@@ -3,6 +3,8 @@ package com.example.test1.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("eventService")
 public class EventServiceImpl implements EventService {
 
@@ -28,4 +30,10 @@ public class EventServiceImpl implements EventService {
     public void deleteEvent(int seq) {
         dao.deleteEvent(seq);
     }
+
+    @Override
+    public List<EventDto> getAllEvent() {
+        return dao.getAllEvent();
+    }
+
 }

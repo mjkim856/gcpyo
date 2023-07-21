@@ -1,11 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: akdrh
-  Date: 2023-07-19
-  Time: 오전 3:41
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -13,10 +6,6 @@
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function(){
-            $("#btn-delete-event").on('click', function() {
-                location.href="delete?seq=" + ${dto.seq};
-                alert("삭제가 완료되었습니다!");
-            })
         });
     </script>
 </head>
@@ -67,19 +56,19 @@
                     <strong><span>*</span>표시는 반드시 입력해야할 항목입니다.</strong>
                 </p>
             </div>
-            <form id="form" action="update" method="post" class="bg-light pb-3">
+            <form id="form" action="event" method="post" class="bg-light pb-3">
                 <table class="table">
                     <tr>
                         <th><span>*</span> 이름</th>
                         <td>
-                            <input type="text" name="name" id="name" value="${dto.name}"/>
+                            <input type="text" name="name" id="name"/>
                         </td>
                     </tr>
                     <tr>
                         <th><span>*</span> 성별</th>
                         <td>
                             <select name="gender" id="gender">
-                                <option selected="selected" disabled="disabled">${dto.gender}</option>
+                                <option selected="selected" disabled="disabled">선택해주세요.</option>
                                 <option value="W">여성</option>
                                 <option value="M">남성</option>
                             </select>
@@ -89,7 +78,7 @@
                         <th><span>*</span> 연령</th>
                         <td>
                             <select name="age" id="age">
-                                <option selected="selected" disabled="disabled">${dto.age}대</option>
+                                <option selected="selected" disabled="disabled">선택해주세요.</option>
                                 <option value="10">10대</option>
                                 <option value="20">20대</option>
                                 <option value="30">30대</option>
@@ -103,17 +92,28 @@
                     <tr>
                         <th><span>*</span> 휴대폰번호</th>
                         <td>
-                            <input type="tel" name="tel" id="tel" value="${dto.tel}" readonly>
+                            <input type="tel" name="tel" id="tel">
                         </td>
                     </tr>
                 </table>
                 <div class="row my-3">
                     <div class="col-12 text-center">
-                        <button type="button" class="btn" id="btn-delete-event">삭제하기</button>
-                        <button type="submit" style="background-color: #A6CD48" class="btn" id="btn-insert-event">수정하기</button>
+                        <input type="reset" class="btn btn-outline-secondary"><strong></strong>
+                        <button type="submit" style="background-color: #A6CD48" class="btn" id="btn-insert-event">제출하기</button>
+                        <!--                <span style="color: white;">제출하기</span>-->
                     </div>
                 </div>
             </form><br><br>
+
+<!--            본문 : 신청 정보 조회-->
+            <div>
+                <h5><strong>신청 정보 조회하기</strong></h5>
+                <form action="check" method="post">
+                    <p>이미 신청하신 고객님이라면, 신청 정보 조회를 위해 아래 란에 휴대폰 번호를 입력해 주세요.</p>
+                    <input type="tel" name="telCheck" id="tel-check">
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">조회하기</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
